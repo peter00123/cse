@@ -7,11 +7,23 @@
     <title>Document</title>
 </head>
 <style>
+    body{
+        margin: 20px;
+    }
     h1{font-size: 25 px;
     }
     h2{font-size: 15px;}
+    section{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .sec1{
+        margin: 10px;
+    }
 </style>
 <body>
+    <section>
+    <div class="sec1">
     <div>
         <h1>peter</h1>
         <h2>import java.util.Arrays; <br>
@@ -173,49 +185,97 @@
                     return (int) (Math.log(n) / Math.log(2)) + 1; // +1 to account for ceiling effect of log2(n)<br>
                 }<br>
             }<br>
-            Inba<br>
         </h2>
     </div>
-    <br>
+    </div>
+    <div class="sec1">
     <div>
         <h1>jeg</h1>
-        <h2>
-            import java.util.PriorityQueue;<br>
-
-public class HeapSearchExample {<br>
-    public static void main(String[] args) {<br>
-        // Create a min-heap using Java's PriorityQueue<br>
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();<br>
-            <br>
-        // Insert elements into the heap<br>
-        minHeap.add(10);<br>
-        minHeap.add(20);<br>
-        minHeap.add(15);<br>
-        minHeap.add(5);<br>
-        minHeap.add(30);<br>
-
-        // Display the heap elements<br>
-        System.out.println("Heap elements: " + minHeap);<br>
-
-        // Remove the minimum element (root of the heap)<br>
-        int minElement = minHeap.poll();<br>
-        System.out.println("Removed minimum element: " + minElement);<br>
-
-        // Display the heap elements after removal<br>
-        System.out.println("Heap elements after removal: " + minHeap);<br>
-
-        // Search for a specific element in the heap<br>
-        int searchElement = 15;<br>
-        boolean found = minHeap.contains(searchElement);<br>
-        if (found) {<br>
-            System.out.println("Element " + searchElement + " is in the heap.");<br>
-        } else {<br>
-            System.out.println("Element " + searchElement + " is not in the heap.");<br>
-        }<br>
-    }<br>
-}<br>
-
-        </h2>
+        <h2>import java.util.Arrays;<br>
+            public class HeapSort <br>
+            {<br>
+                public static void main(String[] args) {<br>
+                    int[] arr = {12, 7, 10, 25}; // Example array, replace with desired size<br>
+                    heapSort(arr); System.out.println(Arrays.toString(arr));<br>
+                }<br>
+                static void heapSort(int[] arr) <br>
+            {<br>
+                    for (int i = arr.length / 2 - 1; i >= 0; i--)    <br>  heapify(arr, arr.length, i);
+                    for (int i = arr.length - 1; i >= 0; i--) <br>
+            {<br>
+            int temp = arr[0];<br>
+             arr[0] = arr[i]; <br>
+            arr[i] = temp; <br>
+            heapify(arr, i, 0);<br>
+            }<br>
+                }<br>
+                static void heapify(int[] arr, int n, int i) <br>
+            {<br>
+                    int largest = i, l = 2 * i + 1, r = 2 * i + 2; <br>
+            if (l < n && arr[l] > arr[largest]) largest = l;<br>
+             if (r < n && arr[r] > arr[largest]) largest = r;<br>
+                    if (largest != i)<br>
+             {<br>
+            int swap = arr[i]; <br>
+            arr[i] = arr[largest]; <br>
+            arr[largest] = swap; <br>
+            heapify(arr, n, largest);}<br>
+                }<br>
+            } </h2>
     </div>
+    <div>
+        <h1>mani</h1>
+ <br>       public class SimpleTSP {<br>
+ <br>           public static void main(String[] args) {
+ <br>               int[][] dist = {{0, 10, 15, 20}, {10, 0, 35, 25}, {15, 35, 0, 30}, {20, 25, 30, 0}};
+ <br>               int minDist = Integer.MAX_VALUE;
+ <br>               for (int i = 0; i < 24; i++) {  // There are 4! = 24 permutations
+ <br>                   int d = dist[i % 4][(i / 1) % 4] + dist[(i / 1) % 4][(i / 2) % 4] + dist[(i / 2) % 4][(i / 3) % 4] + dist[(i / 3) % 4][(i / 4) % 4];
+ <br>                   minDist = Math.min(minDist, d);
+ <br>               }
+ <br>               System.out.println("Minimum Distance: " + minDist);
+ <br>           }
+ <br>       }
+   </div>
+
+   <div>
+    <h1>aka</h1>
+    <h2>
+ <br>       public class InsertionSortExample {
+<br>
+ <br>           public static void main(String[] args) {
+ <br>               // Define the array to be sorted
+ <br>               int[] array = {12, 45, 78, 96, 56, 77, 51, 8, 104, 96};
+ <br>       
+ <br>               // Perform insertion sort
+ <br>               insertionSort(array);
+ <br>       
+ <br>               // Print the sorted array
+ <br>               System.out.println("Sorted array:");
+ <br>               for (int num : array) {
+ <br>                   System.out.print(num + " ");
+ <br>               }
+ <br>           }
+ <br>       
+ <br>           // Method to perform insertion sort
+ <br>           public static void insertionSort(int[] array) {
+ <br>               int n = array.length;
+ <br>               for (int i = 1; i < n; i++) {
+ <br>                   int key = array[i];
+ <br>                   int j = i - 1;
+ <br>       
+ <br>                   // Move elements of array[0..i-1], that are greater than key,
+ <br>                   // to one position ahead of their current position
+ <br>                   while (j >= 0 && array[j] > key) {
+ <br>                       array[j + 1] = array[j];
+ <br>                       j--;
+ <br>                   }
+ <br>                   array[j + 1] = key;
+ <br>               }
+ <br>           }
+ <br>       }
+    </h2>
+   </div></div>
+</section>
 </body>
 </html>
