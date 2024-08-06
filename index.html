@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<style>
+    h1{font-size: 25 px;
+    }
+    h2{font-size: 15px;}
+</style>
+<body>
+    <div>
+        <h1>peter</h1>
+        <h2>import java.util.Arrays; <br>
+
+            public class FloydWarshall {<br>
+                <br>
+                final static int INF = 99999;<br>
+                <br>
+                // A utility function to print the solution matrix<br>
+                void printSolution(int dist[][], int V) {<br>
+                    System.out.println("The following matrix shows the shortest distances between every pair of vertices:");<br>
+                    for (int i = 0; i < V; ++i) {<br>
+                        for (int j = 0; j < V; ++j) {<br>
+                            if (dist[i][j] == INF) {<br>
+                                System.out.print("INF ");<br>
+                            } else {<br>
+                                System.out.print(dist[i][j] + "   ");<br>
+                            }<br>
+                        }<br>
+                        System.out.println();<br>
+                    }<br>
+                }<br>
+                <br>
+                // All-pairs shortest path function using Floyd Warshall algorithm<br>
+                void floydWarshall(int graph[][], int V) {<br>
+                    int dist[][] = new int[V][V];<br>
+                    <br>
+                    // Initialize the solution matrix same as input graph matrix<br>
+                    for (int i = 0; i < V; i++) {<br>
+                        for (int j = 0; j < V; j++) {<br>
+                            dist[i][j] = graph[i][j];<br>
+                        }<br>
+                    }<br>
+                    <br>
+                    // Adding vertices individually<br>
+                    for (int k = 0; k < V; k++) {<br>
+                        for (int i = 0; i < V; i++) {<br>
+                            for (int j = 0; j < V; j++) {<br>
+                                if (dist[i][k] + dist[k][j] < dist[i][j]) {<br>
+                                    dist[i][j] = dist[i][k] + dist[k][j];<br>
+                                }<br>
+                            }<br>
+                        }<br>
+                    }<br>
+                    
+                    // Print the shortest distance matrix<br>
+                    printSolution(dist, V);<br>
+                }<br>
+                
+                public static void main(String[] args) {<br>
+                    FloydWarshall fw = new FloydWarshall();<br>
+                    <br>
+                    int graph[][] = {<br>
+                        {0, 5, INF, 10},<br>
+                        {INF, 0, 3, INF},<br>
+                        {INF, INF, 0, 1},<br>
+                        {INF, INF, INF, 0}<br>
+                    };<br>
+                    <br>
+                    int V = graph.length;<br>
+                    <br>
+                    fw.floydWarshall(graph, V);<br>
+                }<br>
+            }</h2>
+    </div>
+    <br>
+
+    <div>
+        <h1>kow</h1>
+        <h2>
+        public class NaiveStringMatching {<br>
+
+            // Function to implement the naive string matching algorithm<br>
+            public static void naiveSearch(String pattern, String text) {<br>
+                int M = pattern.length();<br>
+                int N = text.length();<br>
+                <br>
+                // Slide the pattern one by one<br>
+                for (int i = 0; i <= N - M; i++) {<br>
+                    int j;<br>
+        
+                    // Check for pattern match<br>
+                    for (j = 0; j < M; j++) {<br>
+                        if (text.charAt(i + j) != pattern.charAt(j)) {<br>
+                            break;<br>
+                        }<br>
+                    }<br>
+                    <br>
+                    // If the pattern is found, j will be equal to M<br>
+                    if (j == M) {<br>
+                        System.out.println("Pattern found at index " + i);<br>
+                    }<br>
+                }<br>
+            }<br>
+        
+            public static void main(String[] args) {<br>
+                String text = "AABAACAADAABAABA";<br>
+                String pattern = "AABA";<br>
+        
+                System.out.println("Text: " + text);<br>
+                System.out.println("Pattern: " + pattern);<br>
+                <br>
+                naiveSearch(pattern, text);<br>
+            }<br>
+        }<br>
+    </h2>
+    </div>
+    <div>
+        <h1>inb</h1>
+        <h2>
+            public class RecursiveBinarySearch {<br>
+
+                // Recursive binary search function<br>
+                public static int binarySearch(int[] arr, int left, int right, int x) {<br>
+                    if (right >= left) {<br>
+                        int mid = left + (right - left) / 2;<br>
+                        <br>
+                        // If the element is present at the middle itself<br>
+                        if (arr[mid] == x) {<br>
+                            return mid;<br>
+                        }<br>
+            
+                        // If the element is smaller than mid, it can only be in the left subarray<br>
+                        if (arr[mid] > x) {<br>
+                            return binarySearch(arr, left, mid - 1, x);<br>
+                        }<br>
+            
+                        // Else the element can only be in the right subarray<br>
+                        return binarySearch(arr, mid + 1, right, x);<br>
+                    }<br>
+                    <br>
+                    // If the element is not present in the array<br>
+                    return -1;<br>
+                }<br>
+            
+                public static void main(String[] args) {<br>
+                    int[] list = {1, 5, 6, 7, 9, 12, 15, 26, 28, 35, 39};<br>
+                    int[] searchKeys = {7, 15, 39};<br>
+            
+                    for (int key : searchKeys) {<br>
+                        int result = binarySearch(list, 0, list.length - 1, key);<br>
+                        if (result == -1) {<br>
+                            System.out.println("Element " + key + " not found in the list.");<br>
+                        } else {<br>
+                            System.out.println("Element " + key + " found at index " + result + ".");<br>
+                        }<br>
+                    }<br>
+            
+                    // Calculating and printing time complexity<br>
+                    System.out.println("\nTime Complexity:");<br>
+                    for (int key : searchKeys) {<br>
+                        int complexity = calculateTimeComplexity(list.length);<br><br>
+                        System.out.println("Element " + key + " -> O(" + complexity + ")");<br>
+                    }<br>
+                }<br>
+            
+                // Function to calculate the time complexity of binary search<br>
+                public static int calculateTimeComplexity(int n) {<br>
+                    return (int) (Math.log(n) / Math.log(2)) + 1; // +1 to account for ceiling effect of log2(n)<br>
+                }<br>
+            }<br>
+            Inba<br>
+        </h2>
+    </div>
+    <br>
+    <div>
+        <h1>jeg</h1>
+        <h2>
+            import java.util.PriorityQueue;<br>
+
+public class HeapSearchExample {<br>
+    public static void main(String[] args) {<br>
+        // Create a min-heap using Java's PriorityQueue<br>
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();<br>
+            <br>
+        // Insert elements into the heap<br>
+        minHeap.add(10);<br>
+        minHeap.add(20);<br>
+        minHeap.add(15);<br>
+        minHeap.add(5);<br>
+        minHeap.add(30);<br>
+
+        // Display the heap elements<br>
+        System.out.println("Heap elements: " + minHeap);<br>
+
+        // Remove the minimum element (root of the heap)<br>
+        int minElement = minHeap.poll();<br>
+        System.out.println("Removed minimum element: " + minElement);<br>
+
+        // Display the heap elements after removal<br>
+        System.out.println("Heap elements after removal: " + minHeap);<br>
+
+        // Search for a specific element in the heap<br>
+        int searchElement = 15;<br>
+        boolean found = minHeap.contains(searchElement);<br>
+        if (found) {<br>
+            System.out.println("Element " + searchElement + " is in the heap.");<br>
+        } else {<br>
+            System.out.println("Element " + searchElement + " is not in the heap.");<br>
+        }<br>
+    }<br>
+}<br>
+
+        </h2>
+    </div>
+</body>
+</html>
